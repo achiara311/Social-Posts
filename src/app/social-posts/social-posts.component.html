@@ -1,0 +1,17 @@
+<button *ngIf="showForm === false" (click)="toggleForm()">Show Form</button>
+<!-- above-- not showing form if its set to false -->
+<h1>My Thoughts</h1>
+<app-post-form
+  (submitted)="onSubmit($event)"
+  *ngIf="showForm === true"
+></app-post-form>
+<!-- above--show form if value is true -->
+<ol>
+  <app-post
+    *ngFor="let post of userPost; index as i"
+    [myPostRef]="post"
+    (deleted)="onDelete(i)"
+  >
+    <!-- using [myPostRef] to bind a child (app-post) to "post" (aka let post of userPost)  -->
+  </app-post>
+</ol>
